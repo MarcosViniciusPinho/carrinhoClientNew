@@ -1,0 +1,20 @@
+<div class="top-menu">    
+
+    <a mat-button [matMenuTriggerFor]="accountMenu" #accountMenuTrigger="matMenuTrigger">
+        <mat-icon class="mat-icon-sm account-icon">person</mat-icon> <span fxShow="false" fxShow.gt-sm>Usuário</span> <mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
+    </a>
+    <mat-menu #accountMenu="matMenu" [overlapTrigger]="false" xPosition="before" class="app-dropdown account">
+        <span (mouseleave)="accountMenuTrigger.closeMenu()">
+            <div fxLayout="row" fxLayoutAlign="space-around center" class="user-info">                   
+                <img src="assets/images/others/user.jpg" alt="user-image" width="50">
+                <p>Emilio Verdines</p>
+            </div>
+            <div class="divider"></div>
+            <a mat-menu-item routerLink="/sign-in"> 
+                <mat-icon class="mat-icon-sm">power_settings_new</mat-icon>
+                <span>Sair</span> 
+            </a>
+        </span>
+    </mat-menu>    
+
+</div>  

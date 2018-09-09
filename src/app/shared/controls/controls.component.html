@@ -1,0 +1,15 @@
+<div fxLayout="row" fxLayout.xs="column" [fxLayoutAlign]="align" class="text-muted">
+    <div *ngIf="product?.availibilityCount > 0 && (type=='all' || type=='wish')">
+        <span *ngIf="type!='wish'" class="fw-500">Quantidade:</span> 
+        <button mat-icon-button matTooltip="Remover" (click)="decrement()"><mat-icon>remove</mat-icon></button>
+        <span> {{count}} </span>
+        <button mat-icon-button matTooltip="Adicionar" (click)="increment()"><mat-icon>add</mat-icon></button>
+    </div>
+    <div *ngIf="type!='wish'">
+        <button mat-icon-button matTooltip="Adicionar ao carrinho" *ngIf="product?.availibilityCount > 0 && type=='all'" (click)="addToCart(product)"><mat-icon>shopping_cart</mat-icon></button>
+        <button *ngIf="type!='all'" mat-icon-button matTooltip="Visualizar Produto" (click)="openProductDialog(product)"><mat-icon>remove_red_eye</mat-icon></button>
+    </div>
+</div> 
+<div *ngIf="product?.availibilityCount == 0 && type=='all'" class="bg-warn p-1 mt-2">
+    Deculpe, mas estamos sem estoque deste produto. Favor, tentar novamente outro dia.
+</div>
