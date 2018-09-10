@@ -1,8 +1,8 @@
 export class Category {
-  constructor(public id: number, 
-              public name:string, 
+  constructor(public id: number,
+              public name: string,
               public hasSubCategory: boolean,
-              public parentId: number){ }
+              public parentId: number) { }
 }
 
 export class Product {
@@ -19,5 +19,6 @@ export class Product {
               public color: Array<string>,
               public size: Array<string>,
               public weight: number,
-              public categoryId: number){ }
+              public categoryId: number,
+              public quantity: number = 1) { }
 }

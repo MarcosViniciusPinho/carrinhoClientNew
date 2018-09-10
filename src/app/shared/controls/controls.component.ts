@@ -15,31 +15,29 @@ export class ControlsComponent implements OnInit {
   @Output() onQuantityChange: EventEmitter<any> = new EventEmitter<any>();
   public count:number = 1;
   public align = 'center center';
-  constructor(public appService:AppService, public snackBar: MatSnackBar) { }
+  constructor(public appService: AppService, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    if(this.product){
+    if (this.product) {
      // console.log(this.product);
-    }  
-    this.layoutAlign(); 
+    }
+    this.layoutAlign();
   }
 
-  public layoutAlign(){
-    if(this.type == 'all'){
+  public layoutAlign() {
+    if (this.type == 'all') {
       this.align = 'space-between center';
-    }
-    else if(this.type == 'wish'){
+    } else if (this.type == 'wish') {
       this.align = 'start center';
-    }
-    else{
+    } else {
       this.align = 'center center';
     }
   }
 
 
 
-  public increment(count){
-    if(this.count < this.product.availibilityCount){
+  public increment() {
+    if (this.count < this.product.availibilityCount) {
       this.count++;
       let obj = {
         productId: this.product.id,
@@ -47,14 +45,13 @@ export class ControlsComponent implements OnInit {
         total: this.count * this.product.newPrice
       }
       this.changeQuantity(obj);
+    } else {
+      this.snackBar.open('Produto Esgotado. No estoque só tem ' + this.count + ' item(s).', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
     }
-    else{
-      this.snackBar.open('You can not choose more items than available. In stock ' + this.count + ' items.', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
-    }    
   }
 
-  public decrement(count){
-    if(this.count > 1){
+  public decrement() {
+    if (this.count > 1) {
       this.count--;
       let obj = {
         productId: this.product.id,
@@ -65,15 +62,15 @@ export class ControlsComponent implements OnInit {
     }
   }
 
-  public addToCart(product:Product){
+  public addToCart(product: Product) {
     this.appService.addToCart(product);
   }
 
-  public openProductDialog(event){
+  public openProductDialog(event) {
     this.onOpenProductDialog.emit(event);
   }
 
-  public changeQuantity(value){
+  public changeQuantity(value) {
       this.onQuantityChange.emit(value);
   }
 
