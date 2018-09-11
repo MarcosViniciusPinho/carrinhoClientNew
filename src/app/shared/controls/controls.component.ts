@@ -21,6 +21,7 @@ export class ControlsComponent implements OnInit {
     if (this.product) {
      // console.log(this.product);
     }
+    this.atualizarContador();
     this.layoutAlign();
   }
 
@@ -34,7 +35,11 @@ export class ControlsComponent implements OnInit {
     }
   }
 
-
+  private atualizarContador() {
+    if (this.product.quantity && this.count == 1) {
+      this.count = this.product.quantity;
+    }
+  }
 
   public increment() {
     if (this.count < this.product.availibilityCount) {
@@ -63,6 +68,7 @@ export class ControlsComponent implements OnInit {
   }
 
   public addToCart(product: Product) {
+    this.product.quantity = this.count;
     this.appService.addToCart(product);
   }
 
